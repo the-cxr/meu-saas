@@ -50,11 +50,11 @@
             
             <form id="login-form" onsubmit="handleLogin(event)">
                 <div class="text-left mb-4">
-                    <label class="text-xs uppercase tracking-widest text-gray-400 block mb-2">cauxr060506@gmail.com</label>
+                    <label class="text-xs uppercase tracking-widest text-gray-400 block mb-2">E-mail de Acesso</label>
                     <input type="email" id="login-email" required class="w-full bg-[#1C2541] border border-gray-600 rounded p-3 text-white focus:outline-none focus:border-[#00F5FF] transition-colors" placeholder="seu@email.com">
                 </div>
                 <div class="text-left mb-6">
-                    <label class="text-xs uppercase tracking-widest text-gray-400 block mb-2">Cau@060506</label>
+                    <label class="text-xs uppercase tracking-widest text-gray-400 block mb-2">Chave de Segurança</label>
                     <input type="password" id="login-password" required class="w-full bg-[#1C2541] border border-gray-600 rounded p-3 text-white focus:outline-none focus:border-[#00F5FF] transition-colors" placeholder="••••••••">
                 </div>
                 <button type="submit" class="w-full bg-transparent border-2 border-[#00F5FF] hover:bg-[#00F5FF] hover:text-[#0B132B] text-[#00F5FF] font-bold py-3 px-4 rounded transition-all duration-300 tracking-wider shadow-[0_0_15px_rgba(0,245,255,0.2)]">
@@ -153,7 +153,7 @@
                             <span class="font-bold tracking-wide mb-3 block flex items-center gap-2"><i data-lucide="activity" class="w-5 h-5 text-[#00F5FF]"></i> Logs do Sistema</span>
                             <div id="system-logs" class="space-y-3 text-xs text-gray-400 max-h-[220px] overflow-y-auto custom-scrollbar pr-1">
                                 <p class="border-l-2 border-[#00F5FF] pl-2 py-0.5">SaaS inicializado com segurança criptográfica.</p>
-                                <p class="border-l-2 border-green-500 pl-2 py-0.5">Persistência por LocalStorage ativada.</p>
+                                <p class="border-l-2 border-green-500 pl-2 py-0.5">Persistência estável por LocalStorage ativada.</p>
                             </div>
                         </div>
                         <button onclick="switchTab('projects')" class="w-full text-center text-xs text-[#00F5FF] uppercase tracking-widest font-bold pt-4 hover:underline">Adicionar Contrato +</button>
@@ -268,11 +268,11 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Data</label>
-                        <input type="date" id="e-date" required class="w-full bg-[#111A36] border border-gray-700 rounded p-2.5 text-white focus:outline-none focus:border-purple-500">
+                        <input type="date" id="e-date" required class="w-full bg-[#111A36] border border-purple-500 rounded p-2.5 text-white focus:outline-none focus:border-purple-500">
                     </div>
                     <div>
                         <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Horário</label>
-                        <input type="time" id="e-time" required class="w-full bg-[#111A36] border border-gray-700 rounded p-2.5 text-white focus:outline-none focus:border-purple-500">
+                        <input type="time" id="e-time" required class="w-full bg-[#111A36] border border-purple-500 rounded p-2.5 text-white focus:outline-none focus:border-purple-500">
                     </div>
                 </div>
                 <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded tracking-widest hover:bg-purple-700 transition-colors mt-2">
@@ -285,7 +285,7 @@
     <script>
         lucide.createIcons();
 
-        // 🛡️ MASCARAMENTO SEGURO POR HASH (Valores reais: cauxr060506@gmail.com e {senha})
+        // 🛡️ MASCARAMENTO SEGURO POR HASH (Valores reais escondidos contra varreduras públicas)
         const targetUserHash = "602d38564f26b1c676d639b7ea008c3e80931599cb5103ec41d8e3bda8be434f";
         const targetPassHash = "9634e0821bfefeb4a682da700305885cc047fe8f1a4e25ecba7bc4bda6822295";
 
@@ -296,7 +296,7 @@
             return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // 💾 CARREGAMENTO PERSISTENTE (LocalStorage)
+        // 💾 CARREGAMENTO PERSISTENTE POR LOCALSTORAGE (Inicia vazio se não houver dados anteriores)
         let projetos = JSON.parse(localStorage.getItem('cc_saas_projetos')) || [];
         let compromissos = JSON.parse(localStorage.getItem('cc_saas_compromissos')) || [];
 
@@ -304,12 +304,12 @@
         let currentFilter = 'total';
         let myLineChart = null;
 
-        // Função para gravar dados no navegador a cada atualização
         function sincronizarLocalStorage() {
             localStorage.setItem('cc_saas_projetos', JSON.stringify(projetos));
             localStorage.setItem('cc_saas_compromissos', JSON.stringify(compromissos));
         }
 
+        // Correção de Login: Forçando a verificação estrita em minúsculas
         async function handleLogin(e) {
             e.preventDefault();
             const inputEmail = document.getElementById('login-email').value.trim().toLowerCase();
@@ -323,7 +323,7 @@
                 document.getElementById('main-dashboard').classList.remove('hidden');
                 initDashboard();
             } else {
-                alert("ACESSO NEGADO: Credenciais incorretas.");
+                alert("ACESSO NEGADO: Email ou Chave de Acesso incorretos.");
             }
         }
 
@@ -353,7 +353,7 @@
             renderProjectsTable();
             calculateMetrics();
             renderChart();
-            logSystem("Painel operacional conectado à memória local.");
+            logSystem("Painel operacional sincronizado com LocalStorage.");
         }
 
         function logSystem(msg) {
