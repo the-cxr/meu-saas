@@ -152,8 +152,8 @@
                         <div>
                             <span class="font-bold tracking-wide mb-3 block flex items-center gap-2"><i data-lucide="activity" class="w-5 h-5 text-[#00F5FF]"></i> Logs do Sistema</span>
                             <div id="system-logs" class="space-y-3 text-xs text-gray-400 max-h-[220px] overflow-y-auto custom-scrollbar pr-1">
-                                <p class="border-l-2 border-[#00F5FF] pl-2 py-0.5">SaaS inicializado com estabilidade de dados.</p>
-                                <p class="border-l-2 border-green-500 pl-2 py-0.5">Persistência local ativa (LocalStorage).</p>
+                                <p class="border-l-2 border-[#00F5FF] pl-2 py-0.5">SaaS inicializado com sucesso.</p>
+                                <p class="border-l-2 border-green-500 pl-2 py-0.5">Persistência local estável ativa (LocalStorage).</p>
                             </div>
                         </div>
                         <button onclick="switchTab('projects')" class="w-full text-center text-xs text-[#00F5FF] uppercase tracking-widest font-bold pt-4 hover:underline">Adicionar Contrato +</button>
@@ -198,7 +198,7 @@
                         <p class="text-gray-400 text-sm">Acompanhe seus prazos de entrega e compromissos internos.</p>
                     </div>
                     <button onclick="openModal('event')" class="bg-[#111A36] border border-purple-500 hover:bg-purple-600 hover:text-white text-purple-400 text-sm font-bold py-2.5 px-5 rounded transition-all duration-300 flex items-center gap-2 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
-                        <i data-lucide="video" class="w-4 h-4"></i> NOVO COMPROMISSO
+                        <i data-lucide="video" class="w-4 h-4"></i> NOVO COMPROMISSOS
                     </button>
                 </div>
                 
@@ -285,7 +285,7 @@
     <script>
         lucide.createIcons();
 
-        // 💾 CARREGAMENTO PERSISTENTE (LocalStorage para salvar tudo)
+        // 💾 CARREGAMENTO PERSISTENTE (LocalStorage)
         let projetos = JSON.parse(localStorage.getItem('cc_saas_projetos')) || [];
         let compromissos = JSON.parse(localStorage.getItem('cc_saas_compromissos')) || [];
 
@@ -298,13 +298,13 @@
             localStorage.setItem('cc_saas_compromissos', JSON.stringify(compromissos));
         }
 
-        // Lógica de Validação Direta e Segura de Texto
+        // Validação Direta e Limpa de Texto
         function handleLogin(e) {
             e.preventDefault();
             const inputEmail = document.getElementById('login-email').value.trim().toLowerCase();
             const inputPass = document.getElementById('login-password').value;
 
-            // Comparação direta sem falha de conversão binária/hash
+            // Verificação em texto limpo para evitar bugs de preenchimento automático
             if (inputEmail === "cauxr060506@gmail.com" && inputPass === "Cau@060506") {
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('main-dashboard').classList.remove('hidden');
@@ -340,7 +340,7 @@
             renderProjectsTable();
             calculateMetrics();
             renderChart();
-            logSystem("Painel conectado com persistência de dados.");
+            logSystem("Painel operacional sincronizado com LocalStorage.");
         }
 
         function logSystem(msg) {
@@ -372,7 +372,7 @@
             tbody.innerHTML = '';
 
             if(projetos.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500 italic">Nenhum contrato ativo. Adicione um projeto para começar!</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500 italic">Nenhum contrato ativo na memória local. Adicione um projeto para começar!</td></tr>`;
                 return;
             }
 
