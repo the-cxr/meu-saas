@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaaS Core - PROJETO C&C</title>
-    <!-- Tailwind CSS para Estilização Rápida -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js para Gráficos Avançados -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Lucide Icons para Ícones Tecnológicos -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
@@ -43,7 +40,6 @@
 </head>
 <body class="text-white min-h-screen custom-scrollbar">
 
-    <!-- TELA DE LOGIN -->
     <div id="login-screen" class="flex items-center justify-center min-h-screen px-4">
         <div class="neon-bg-glow neon-border p-8 rounded-xl w-full max-w-md text-center">
             <div class="flex justify-center mb-4">
@@ -68,10 +64,8 @@
         </div>
     </div>
 
-    <!-- PAINEL PRINCIPAL -->
     <div id="main-dashboard" class="hidden min-h-screen flex flex-col md:flex-row">
         
-        <!-- SIDEBAR DE NAVEGAÇÃO -->
         <aside class="w-full md:w-64 bg-[#111A36] border-b md:border-b-0 md:border-r border-gray-800 p-6 flex flex-col justify-between">
             <div>
                 <div class="flex items-center gap-3 mb-8">
@@ -93,12 +87,9 @@
             </div>
         </aside>
 
-        <!-- CONTEÚDO PRINCIPAL -->
         <main class="flex-1 p-6 md:p-8 overflow-y-auto max-h-screen custom-scrollbar">
             
-            <!-- ABA 1: DASHBOARD -->
             <div id="tab-dash" class="space-y-6">
-                <!-- Cabeçalho -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                         <h2 class="text-2xl font-bold tracking-wide">Painel de Controle Operacional</h2>
@@ -112,7 +103,6 @@
                     </div>
                 </div>
 
-                <!-- Cards Principais -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="neon-bg-glow border border-gray-800 p-6 rounded-xl flex items-center justify-between">
                         <div>
@@ -137,7 +127,6 @@
                     </div>
                 </div>
 
-                <!-- Barra de Progresso (Meta R$ 100.000) -->
                 <div class="neon-bg-glow border border-gray-800 p-6 rounded-xl">
                     <div class="flex justify-between items-center mb-3">
                         <div class="flex items-center gap-2">
@@ -151,7 +140,6 @@
                     </div>
                 </div>
 
-                <!-- Gráfico de Linhas Tecnológico -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="neon-bg-glow border border-gray-800 p-6 rounded-xl lg:col-span-2 flex flex-col justify-between">
                         <span class="font-bold tracking-wide mb-4 block flex items-center gap-2"><i data-lucide="line-chart" class="w-5 h-5 text-[#00F5FF]"></i> Histórico Linear de Crescimento e Receita</span>
@@ -160,13 +148,12 @@
                         </div>
                     </div>
                     
-                    <!-- Logs do Sistema -->
                     <div class="neon-bg-glow border border-gray-800 p-6 rounded-xl flex flex-col justify-between">
                         <div>
                             <span class="font-bold tracking-wide mb-3 block flex items-center gap-2"><i data-lucide="activity" class="w-5 h-5 text-[#00F5FF]"></i> Logs do Sistema</span>
                             <div id="system-logs" class="space-y-3 text-xs text-gray-400 max-h-[220px] overflow-y-auto custom-scrollbar pr-1">
-                                <p class="border-l-2 border-[#00F5FF] pl-2 py-0.5">SaaS inicializado com criptografia de ponta.</p>
-                                <p class="border-l-2 border-green-500 pl-2 py-0.5">Autenticação fixa configurada com sucesso.</p>
+                                <p class="border-l-2 border-[#00F5FF] pl-2 py-0.5">SaaS inicializado com segurança criptográfica.</p>
+                                <p class="border-l-2 border-green-500 pl-2 py-0.5">Persistência por LocalStorage ativada.</p>
                             </div>
                         </div>
                         <button onclick="switchTab('projects')" class="w-full text-center text-xs text-[#00F5FF] uppercase tracking-widest font-bold pt-4 hover:underline">Adicionar Contrato +</button>
@@ -174,7 +161,6 @@
                 </div>
             </div>
 
-            <!-- ABA 2: PROJETOS -->
             <div id="tab-projects" class="hidden space-y-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
@@ -186,7 +172,6 @@
                     </button>
                 </div>
 
-                <!-- Tabela de Projetos -->
                 <div class="neon-bg-glow border border-gray-800 rounded-xl overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
@@ -200,14 +185,12 @@
                                 </tr>
                             </thead>
                             <tbody id="projects-table-body" class="divide-y divide-gray-800 text-sm">
-                                <!-- JS dinâmico -->
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <!-- ABA 3: AGENDA (Modelo Calendário Real) -->
             <div id="tab-agenda" class="hidden space-y-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
@@ -219,7 +202,6 @@
                     </button>
                 </div>
                 
-                <!-- Grade de Calendário Real -->
                 <div class="neon-bg-glow border border-gray-800 p-6 rounded-xl">
                     <div class="flex justify-between items-center mb-6">
                         <div class="flex items-center gap-3">
@@ -229,22 +211,18 @@
                         </div>
                     </div>
 
-                    <!-- Dias da Semana -->
                     <div class="grid grid-cols-7 gap-2 text-center text-xs font-bold text-gray-400 uppercase mb-2">
                         <div class="p-2">Dom</div><div class="p-2">Seg</div><div class="p-2">Ter</div><div class="p-2">Qua</div><div class="p-2">Qui</div><div class="p-2">Sex</div><div class="p-2">Sáb</div>
                     </div>
 
-                    <!-- Dias do Mês (Grid) -->
                     <div id="calendar-days-grid" class="grid grid-cols-7 gap-2">
-                        <!-- JS dinâmico -->
-                    </div>
+                        </div>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- MODAL CADASTRO/EDIÇÃO PROJETO -->
     <div id="project-modal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
         <div class="neon-bg-glow neon-border p-6 rounded-xl w-full max-w-md relative">
             <button onclick="closeModal('project')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
@@ -277,7 +255,6 @@
         </div>
     </div>
 
-    <!-- MODAL DE COMPROMISSOS -->
     <div id="event-modal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
         <div class="neon-bg-glow neon-border p-6 rounded-xl w-full max-w-md relative" style="border-color: rgba(168,85,247,0.5)">
             <button onclick="closeModal('event')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
@@ -305,41 +282,48 @@
         </div>
     </div>
 
-    <!-- LOGICA DO SISTEMA -->
     <script>
         lucide.createIcons();
 
-        // 🔐 CREDENCIAIS FIXAS EXIGIDAS
-        const AUTH_EMAIL = "cauxr060506@gmail.com";
-        const AUTH_PASS = "Cau@060506";
+        // 🛡️ MASCARAMENTO SEGURO POR HASH (Valores reais: cauxr060506@gmail.com e {senha})
+        const targetUserHash = "602d38564f26b1c676d639b7ea008c3e80931599cb5103ec41d8e3bda8be434f";
+        const targetPassHash = "9634e0821bfefeb4a682da700305885cc047fe8f1a4e25ecba7bc4bda6822295";
 
-        // Estados Globais
-        let projetos = [
-            { id: 1, nome: "Identidade Visual de Marca", cliente: "Burger House", valor: 1200.00, prazo: "2026-06-12", status: "Em Andamento" },
-            { id: 2, nome: "Aperfeiçoamento de Fotos de Cardápio", cliente: "Pizzaria Bella", valor: 850.00, prazo: "2026-06-18", status: "Pra Fazer" },
-            { id: 3, nome: "Desenvolvimento de Logomarca Premium", cliente: "Sushi Tech", valor: 2500.00, prazo: "2026-06-05", status: "Finalizado" }
-        ];
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);                    
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
 
-        let compromissos = [
-            { id: 1, titulo: "Call com C&C Namorada", data: "2026-06-08", hora: "21:00" }
-        ];
+        // 💾 CARREGAMENTO PERSISTENTE (LocalStorage)
+        let projetos = JSON.parse(localStorage.getItem('cc_saas_projetos')) || [];
+        let compromissos = JSON.parse(localStorage.getItem('cc_saas_compromissos')) || [];
 
         let currentDate = new Date(2026, 5, 8); // Junho de 2026
         let currentFilter = 'total';
         let myLineChart = null;
 
-        // Lógica de Autenticação com Validação Segura
-        function handleLogin(e) {
+        // Função para gravar dados no navegador a cada atualização
+        function sincronizarLocalStorage() {
+            localStorage.setItem('cc_saas_projetos', JSON.stringify(projetos));
+            localStorage.setItem('cc_saas_compromissos', JSON.stringify(compromissos));
+        }
+
+        async function handleLogin(e) {
             e.preventDefault();
-            const inputEmail = document.getElementById('login-email').value.trim();
+            const inputEmail = document.getElementById('login-email').value.trim().toLowerCase();
             const inputPass = document.getElementById('login-password').value;
 
-            if (inputEmail === AUTH_EMAIL && inputPass === AUTH_PASS) {
+            const inputEmailHash = await sha256(inputEmail);
+            const inputPassHash = await sha256(inputPass);
+
+            if (inputEmailHash === targetUserHash && inputPassHash === targetPassHash) {
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('main-dashboard').classList.remove('hidden');
                 initDashboard();
             } else {
-                alert("ACESSO NEGADO: Email ou Chave de Acesso incorretos no terminal.");
+                alert("ACESSO NEGADO: Credenciais incorretas.");
             }
         }
 
@@ -369,7 +353,7 @@
             renderProjectsTable();
             calculateMetrics();
             renderChart();
-            logSystem("Painel operacional recarregado.");
+            logSystem("Painel operacional conectado à memória local.");
         }
 
         function logSystem(msg) {
@@ -387,7 +371,7 @@
             let projetosAtivos = projetos.filter(p => p.status === 'Em Andamento' || p.status === 'Pra Fazer').length;
             
             let metaAlvo = 100000.00;
-            let porcentagemMeta = Math.min((totalFaturado / metaAlvo) * 100, 100).toFixed(2);
+            let porcentagemMeta = totalFaturado > 0 ? Math.min((totalFaturado / metaAlvo) * 100, 100).toFixed(2) : "0.00";
 
             document.getElementById('card-faturamento-total').innerText = `R$ ${totalFaturado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
             document.getElementById('card-projetos-ativos').innerText = projetosAtivos;
@@ -401,7 +385,7 @@
             tbody.innerHTML = '';
 
             if(projetos.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500 italic">Nenhum contrato cadastrado no banco de dados.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500 italic">Nenhum contrato ativo na memória local. Adicione um projeto para começar!</td></tr>`;
                 return;
             }
 
@@ -413,7 +397,7 @@
 
                 let actions = `
                     <div class="flex justify-center gap-2">
-                        ${p.status === 'Pra Fazer' ? `<button onclick="changeStatus(${p.id}, 'Em Andamento')" class="text-xs bg-[#1C2541] hover:text-[#00F5FF] border border-gray-700 px-2 py-1 rounded" title="Iniciar">Iniciar</button>` : ''}
+                        ${p.status === 'Pra Fazer' ? `<button onclick="changeStatus(${p.id}, 'Em Andamento')" class="text-xs bg-[#1C2541] hover:text-[#00F5FF] border border-gray-700 px-2 py-1 rounded">Iniciar</button>` : ''}
                         ${p.status !== 'Finalizado' ? `<button onclick="changeStatus(${p.id}, 'Finalizado')" class="text-xs bg-[#0F3A3A] hover:bg-[#00F5FF] hover:text-[#0B132B] border border-[#00F5FF] text-[#00F5FF] px-2 py-1 rounded font-bold">Finalizar</button>` : ''}
                         <button onclick="editProject(${p.id})" class="text-gray-400 hover:text-white p-1" title="Editar"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
                         <button onclick="deleteProject(${p.id})" class="text-red-500 hover:text-red-400 p-1" title="Excluir"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
@@ -439,6 +423,7 @@
             if(proj) {
                 proj.status = newStatus;
                 logSystem(`Contrato "${proj.nome}" movido para ${newStatus}.`);
+                sincronizarLocalStorage();
                 initDashboard();
             }
         }
@@ -448,6 +433,7 @@
             if(index !== -1) {
                 logSystem(`Contrato "${projetos[index].nome}" removido do sistema.`);
                 projetos.splice(index, 1);
+                sincronizarLocalStorage();
                 initDashboard();
             }
         }
@@ -463,16 +449,6 @@
                 
                 document.getElementById('modal-project-title').innerText = "Ajustar Parâmetros do Contrato";
                 openModal('project');
-            }
-        }
-
-        function openModal(type) { document.getElementById(`${type}-modal`).classList.remove('hidden'); }
-        function closeModal(type) { 
-            document.getElementById(`${type}-modal`).classList.add('hidden'); 
-            if(type === 'project') {
-                document.getElementById('project-form').reset();
-                document.getElementById('p-id').value = '';
-                document.getElementById('modal-project-title').innerText = "Inicializar Novo Contrato";
             }
         }
 
@@ -498,6 +474,7 @@
                 logSystem(`Novo contrato estruturado: "${name}".`);
             }
             closeModal('project');
+            sincronizarLocalStorage();
             initDashboard();
         }
 
@@ -512,6 +489,7 @@
             
             document.getElementById('event-form').reset();
             closeModal('event');
+            sincronizarLocalStorage();
             renderCalendar();
         }
 
