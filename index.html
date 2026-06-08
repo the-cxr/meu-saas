@@ -50,11 +50,11 @@
             
             <form id="login-form" onsubmit="handleLogin(event)">
                 <div class="text-left mb-4">
-                    <label class="text-xs uppercase tracking-widest text-gray-400 block mb-2">E-mail de Acesso</label>
+                    <label class="text-xs uppercase tracking-widest text-gray-400 block mb-2">Email Empresarial</label>
                     <input type="email" id="login-email" required class="w-full bg-[#1C2541] border border-gray-600 rounded p-3 text-white focus:outline-none focus:border-[#00F5FF] transition-colors" placeholder="seu@email.com">
                 </div>
                 <div class="text-left mb-6">
-                    <label class="text-xs uppercase tracking-widest text-gray-400 block mb-2">Chave de Segurança</label>
+                    <label class="text-xs uppercase tracking-widest text-gray-400 block mb-2">Chave de Acesso</label>
                     <input type="password" id="login-password" required class="w-full bg-[#1C2541] border border-gray-600 rounded p-3 text-white focus:outline-none focus:border-[#00F5FF] transition-colors" placeholder="••••••••">
                 </div>
                 <button type="submit" class="w-full bg-transparent border-2 border-[#00F5FF] hover:bg-[#00F5FF] hover:text-[#0B132B] text-[#00F5FF] font-bold py-3 px-4 rounded transition-all duration-300 tracking-wider shadow-[0_0_15px_rgba(0,245,255,0.2)]">
@@ -152,8 +152,8 @@
                         <div>
                             <span class="font-bold tracking-wide mb-3 block flex items-center gap-2"><i data-lucide="activity" class="w-5 h-5 text-[#00F5FF]"></i> Logs do Sistema</span>
                             <div id="system-logs" class="space-y-3 text-xs text-gray-400 max-h-[220px] overflow-y-auto custom-scrollbar pr-1">
-                                <p class="border-l-2 border-[#00F5FF] pl-2 py-0.5">SaaS inicializado com segurança criptográfica.</p>
-                                <p class="border-l-2 border-green-500 pl-2 py-0.5">Persistência estável por LocalStorage ativada.</p>
+                                <p class="border-l-2 border-[#00F5FF] pl-2 py-0.5">SaaS inicializado com estabilidade de dados.</p>
+                                <p class="border-l-2 border-green-500 pl-2 py-0.5">Persistência local ativa (LocalStorage).</p>
                             </div>
                         </div>
                         <button onclick="switchTab('projects')" class="w-full text-center text-xs text-[#00F5FF] uppercase tracking-widest font-bold pt-4 hover:underline">Adicionar Contrato +</button>
@@ -285,18 +285,7 @@
     <script>
         lucide.createIcons();
 
-        // 🛡️ MASCARAMENTO SEGURO POR HASH (Valores reais escondidos contra varreduras públicas)
-        const targetUserHash = "602d38564f26b1c676d639b7ea008c3e80931599cb5103ec41d8e3bda8be434f";
-        const targetPassHash = "9634e0821bfefeb4a682da700305885cc047fe8f1a4e25ecba7bc4bda6822295";
-
-        async function sha256(message) {
-            const msgBuffer = new TextEncoder().encode(message);                    
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        // 💾 CARREGAMENTO PERSISTENTE POR LOCALSTORAGE (Inicia vazio se não houver dados anteriores)
+        // 💾 CARREGAMENTO PERSISTENTE (LocalStorage para salvar tudo)
         let projetos = JSON.parse(localStorage.getItem('cc_saas_projetos')) || [];
         let compromissos = JSON.parse(localStorage.getItem('cc_saas_compromissos')) || [];
 
@@ -309,21 +298,19 @@
             localStorage.setItem('cc_saas_compromissos', JSON.stringify(compromissos));
         }
 
-        // Correção de Login: Forçando a verificação estrita em minúsculas
-        async function handleLogin(e) {
+        // Lógica de Validação Direta e Segura de Texto
+        function handleLogin(e) {
             e.preventDefault();
             const inputEmail = document.getElementById('login-email').value.trim().toLowerCase();
             const inputPass = document.getElementById('login-password').value;
 
-            const inputEmailHash = await sha256(inputEmail);
-            const inputPassHash = await sha256(inputPass);
-
-            if (inputEmailHash === targetUserHash && inputPassHash === targetPassHash) {
+            // Comparação direta sem falha de conversão binária/hash
+            if (inputEmail === "cauxr060506@gmail.com" && inputPass === "Cau@060506") {
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('main-dashboard').classList.remove('hidden');
                 initDashboard();
             } else {
-                alert("ACESSO NEGADO: Email ou Chave de Acesso incorretos.");
+                alert("ACESSO NEGADO: Credenciais incorretas.");
             }
         }
 
@@ -353,7 +340,7 @@
             renderProjectsTable();
             calculateMetrics();
             renderChart();
-            logSystem("Painel operacional sincronizado com LocalStorage.");
+            logSystem("Painel conectado com persistência de dados.");
         }
 
         function logSystem(msg) {
@@ -385,7 +372,7 @@
             tbody.innerHTML = '';
 
             if(projetos.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500 italic">Nenhum contrato ativo na memória local. Adicione um projeto para começar!</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500 italic">Nenhum contrato ativo. Adicione um projeto para começar!</td></tr>`;
                 return;
             }
 
